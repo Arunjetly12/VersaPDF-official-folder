@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- You can also create a new file dashboard.css and link it here -->
+    <!-- <link rel="stylesheet" href="dashboard.css"> -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-wrapper"> 
+        <div class="dashboard-card">
+
+            <h1 id="dashboard-welcome-heading">Loading...</h1>
+            <p class="dashboard-subtitle">Here are your account details.</p>
+            
+            <div class="dashboard-user-info">
+                <div class="info-item">
+                    <span class="info-label">Email:</span>
+                    <span id="dashboard-user-email" class="info-value"></span>
+                </div>
+                <!-- You can add more user details here later -->
+            </div>
+
+            <div class="dashboard-actions">
+                <a href="index.html" class="dashboard-btn primary">Go to Homepage</a>
+                <button id="dashboard-logout-btn" class="dashboard-btn secondary">Log Out</button>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up | VersaPDF</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-form-card">
+            <h2 class="auth-title">Create an Account</h2>
+
+            <!-- The form needs an ID so JS can find it -->
+            <form id="signup-form">
+
+                <!-- CHANGE: Changed "Name" to "Username" to match our backend -->
+                <label>Username</label>
+                <!-- ADD: The `id="username"` attribute -->
+                <input type="text" id="username" placeholder="Choose a username" required class="auth-input">
+
+                <label>Email</label>
+                <!-- ADD: The `id="email"` attribute -->
+                <input type="email" id="email" placeholder="Enter your email" required class="auth-input">
+
+                <label>Password</label>
+                <!-- ADD: The `id="password"` attribute -->
+                <input type="password" id="password" placeholder="Create a password" required class="auth-input">
+
+                <label>Confirm Password</label>
+                <!-- ADD: The `id="confirm-password"` attribute -->
+                <input type="password" id="confirm-password" placeholder="Confirm your password" required class="auth-input">
+
+                <button type="submit" class="btn btn-primary auth-btn">Sign Up</button>
+            </form>
+
+            <!-- ADD: A place to show success or error messages to the user -->
+            <p id="message" class="auth-message"></p>
+
+            <p class="auth-link">
+                Already have an account? <a href="login.html">Log in</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- ADD: Link to our new JavaScript file -->
+    <script src="signup.js" defer></script>
+</body>
+</html>
