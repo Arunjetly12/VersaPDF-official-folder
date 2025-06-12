@@ -91,7 +91,7 @@ const token = localStorage.getItem('token');
 if (token) {
     // USER IS LOGGED IN - Fetch data
     try {
-        const response = await fetch('http://localhost:3000/api/dashboard', {
+        const response = await fetch('https://versapdf-backend.onrender.com/api/dashboard', {
             headers: { 'Authorization': `Bearer ${token}` }
         });
         if (!response.ok) {

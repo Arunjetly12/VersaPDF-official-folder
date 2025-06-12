@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // 3. Fetch protected data from the server
   try {
-    const response = await fetch('http://localhost:3000/api/dashboard', {
+    const response = await fetch('https://versapdf-backend.onrender.com/api/dashboard', {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${token}`
