@@ -1,50 +1,73 @@
-document.addEventListener('DOMContentLoaded', () => {
+// === login.js (Corrected & Bulletproofed) ===
 
+document.addEventListener('DOMContentLoaded', () => {
   const loginForm = document.getElementById('login-form');
   const messageEl = document.getElementById('message');
 
-  loginForm.addEventListener('submit', async (event) => {
-    event.preventDefault();
+  // Guard clause: If the form doesn't exist on this page, do nothing.
+  if (!loginForm) {
+    return;
+  }
 
-    const email = document.getElementById('email-input').value;
-    const password = document.getElementById('password-input').value;
+  loginForm.addEventListener('submit', async (event) => {
+    event.preventDefault(); // Stop the page from reloading
+
+    const emailInput = document.getElementById('email-input');
+    const passwordInput = document.getElementById('password-input');
+
+    // Simple validation
+    if (!emailInput.value || !passwordInput.value) {
+      messageEl.textContent = 'Please enter both email/username and password.';
+      messageEl.style.color = 'red';
+      return;
+    }
 
     const loginData = {
-      loginIdentifier: email,
-      password: password
+      loginIdentifier: emailInput.value,
+      password: passwordInput.value,
     };
 
+    // Show a "loading" message to the user
+    messageEl.textContent = 'Logging in...';
+    messageEl.style.color = '#333';
+
     try {
+      // ✅ This URL points to your LIVE backend on Render. This is CORRECT.
       const response = await fetch('https://versapdf-backend.onrender.com/api/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(loginData)
+        body: JSON.stringify(loginData),
       });
 
       const result = await response.json();
 
       if (response.ok) {
-        messageEl.textContent = result.message; // "Login successful!"
+        // --- SUCCESS ---
+        messageEl.textContent = result.message; // e.g., "Login successful!"
         messageEl.style.color = 'green';
         
-        // --- THIS IS THE CRITICAL NEW PART ---
-        // Save the token to localStorage. This is how the user "stays logged in".
+        // Save the JWT token. This is how the user "stays logged in".
         localStorage.setItem('token', result.token);
-        console.log('Token saved to localStorage:', result.token);
+        
+        console.log('Login successful. Token saved to localStorage.');
 
-        // Redirect to the dashboard after a short delay
+        // Redirect to the dashboard page after a short delay
         setTimeout(() => {
-          window.location.href = 'dashboard.html';
-        }, 1500);
+          window.location.href = '/dashboard.html'; // Or whatever your dashboard page is named
+        }, 1000);
 
       } else {
+        // --- FAILURE (e.g., wrong password, user not found) ---
+        // Log the full error for better debugging
+        console.error('API Error:', response.status, result.message);
         messageEl.textContent = `Error: ${result.message}`;
         messageEl.style.color = 'red';
       }
 
     } catch (error) {
-      console.error('Network or server error:', error);
-      messageEl.textContent = 'Cannot connect to the server.';
+      // --- CATASTROPHIC FAILURE (e.g., server is down, network error) ---
+      console.error('A network or server error occurred:', error);
+      messageEl.textContent = 'Cannot connect to the server. Please try again later.';
       messageEl.style.color = 'red';
     }
   });
