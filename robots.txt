@@ -1,9 +1,6 @@
-
-# These rules are for all search engine bots
 User-agent: *
+Disallow: /login.html
+Disallow: /signup.html
+Disallow: /dashboard.html
 
-# This tells bots they are allowed to crawl everything
-Allow: /
-
-# This points bots directly to your sitemap
 Sitemap: https://versa-pdfs.vercel.app/sitemap.xml
