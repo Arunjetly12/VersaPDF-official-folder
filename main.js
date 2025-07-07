@@ -193,7 +193,6 @@ if(logoutBtn) {
                         const removeBtn = document.createElement('button');
                         removeBtn.innerHTML = '✖';
                         removeBtn.style.position = 'absolute';
-                        removeBtn.style.top = '5px';
                         removeBtn.style.right = '5px';
                         removeBtn.style.background = 'rgba(0, 0, 0, 0.7)';
                         removeBtn.style.color = 'white';
@@ -245,4 +244,56 @@ if(logoutBtn) {
             }
         });
     });
+
+    // -----------------------------------------------------------------
+    // --- HAMBURGER MENU FUNCTIONALITY ---
+    // Added to the existing DOMContentLoaded listener
+    // -----------------------------------------------------------------
+    const hamburgerMenu = document.getElementById('hamburger-menu');
+    const navLinks = document.getElementById('nav-links');
+    
+    // Toggle mobile menu
+    if (hamburgerMenu && navLinks) {
+        hamburgerMenu.addEventListener('click', function() {
+            hamburgerMenu.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+        
+        // Close menu when clicking on a link
+        const navLinksItems = navLinks.querySelectorAll('a');
+        navLinksItems.forEach(link => {
+            link.addEventListener('click', function() {
+                hamburgerMenu.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!hamburgerMenu.contains(event.target) && !navLinks.contains(event.target)) {
+                hamburgerMenu.classList.remove('active');
+                navLinks.classList.remove('active');
+            }
+        });
+        
+        // Close menu on window resize (if screen becomes larger)
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                hamburgerMenu.classList.remove('active');
+                navLinks.classList.remove('active');
+            }
+        });
+    }
 });
+
+// Smooth scrolling for About Us section
+function scrollToAbout(event) {
+    event.preventDefault();
+    const aboutSection = document.getElementById('about');
+    if (aboutSection) {
+        aboutSection.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
+    }
+}

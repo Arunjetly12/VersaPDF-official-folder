@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,7 +39,15 @@
                 <img src="https://i.postimg.cc/vHNDTRWX/freepik-colorful-creative-publishing-company-logo-20250318050310i6s9.png" alt="Logo">
             </a>
         </div> 
-        <div class="nav-links">
+        
+        <!-- Hamburger Menu Button (Mobile Only) -->
+        <div class="hamburger-menu" id="hamburger-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        
+        <div class="nav-links" id="nav-links">
             <a href="#">Home</a>
             <a href="#">Tools</a>
             <a href="#about" onclick="scrollToAbout(event)">About Us</a>
@@ -48,6 +55,7 @@
             <a href="signup.html">Sign Up</a>
             <a href="dashboard.html">Dashboard</a>
         </div> 
+        
         <!-- The button no longer has an <img> inside it. It's controlled by CSS. -->
 <button id="account-btn" class="account-btn"></button>
 
